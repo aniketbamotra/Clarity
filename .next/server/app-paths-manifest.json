@@ -1,0 +1,4 @@
+{
+  "/api/parse-csv/route": "app/api/parse-csv/route.js",
+  "/[userId]/page": "app/[userId]/page.js"
+}
