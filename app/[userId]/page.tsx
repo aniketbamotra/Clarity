@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
 import { Transaction, Category } from '@/types'
 
 const CATEGORIES: { label: Category; emoji: string }[] = [
@@ -208,15 +207,14 @@ export default function FeedPage({ params }: { params: { userId: string } }) {
 
   const fetchTransactions = useCallback(async () => {
     setLoading(true)
-    const { data, error } = await supabase
-      .from('transactions')
-      .select('*')
-      .eq('user_id', userId)
-      .order('date', { ascending: false })
-      .order('created_at', { ascending: false })
-
-    if (!error && data) {
-      setTransactions(data as Transaction[])
+    try {
+      const res = await fetch(`/api/transactions?userId=${encodeURIComponent(userId)}`)
+      if (res.ok) {
+        const data = await res.json()
+        setTransactions(data as Transaction[])
+      }
+    } catch {
+      // silently show empty state
     }
     setLoading(false)
   }, [userId])
