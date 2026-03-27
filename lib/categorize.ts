@@ -28,7 +28,7 @@ export async function categorize(raw_merchant: string): Promise<CategorizeResult
   // 2. UPI person-to-person heuristic
   if (looksLikeUPITransfer(raw_merchant)) {
     const lower = raw_merchant.toLowerCase()
-    const isBrandKeyword = ['pay', 'merchant', 'store', 'mart', 'shop', 'services', 'pvt', 'ltd'].some(
+    const isBrandKeyword = ['pay', 'merchant', 'store', 'mart', 'shop', 'services', 'pvt', 'ltd', 'limited', 'limite', 'llp', 'fincorp', 'digital', 'company', 'solutions'].some(
       (kw) => lower.includes(kw)
     )
     if (!isBrandKeyword) {
@@ -88,7 +88,7 @@ export function categorizeSync(raw_merchant: string): CategorizeResult | null {
 
   if (looksLikeUPITransfer(raw_merchant)) {
     const lower = raw_merchant.toLowerCase()
-    const isBrandKeyword = ['pay', 'merchant', 'store', 'mart', 'shop', 'services', 'pvt', 'ltd'].some(
+    const isBrandKeyword = ['pay', 'merchant', 'store', 'mart', 'shop', 'services', 'pvt', 'ltd', 'limited', 'limite', 'llp', 'fincorp', 'digital', 'company', 'solutions'].some(
       (kw) => lower.includes(kw)
     )
     if (!isBrandKeyword) {

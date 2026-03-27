@@ -191,3 +191,42 @@ export function parseCSV(
 
   return { transactions, bankFormat }
 }
+
+// Cleans a raw narration string into a readable merchant name.
+// Used as a fallback when no merchant map match is found.
+export function cleanNarration(raw: string): string {
+  const s = raw.trim()
+
+  // UPI: "UPI-MERCHANT NAME-handle@bank-..." → "Merchant Name"
+  if (/^upi[-\/]/i.test(s)) {
+    const withoutPrefix = s.replace(/^upi[-\/]/i, '')
+    const segment = withoutPrefix.split('-')[0]
+    return toTitleCase(segment.replace(/@\S+$/, '').trim())
+  }
+
+  // ACH: "ACH D- RAZORPAYSOFTWAREPRIV-IDFCFIRSTBRY" → "Razorpay"
+  if (/^ach\s*d[-\s]/i.test(s)) {
+    const withoutPrefix = s.replace(/^ach\s*d[-\s]+/i, '')
+    const segment = withoutPrefix.split(/[-\d]/)[0]
+    return toTitleCase(segment.trim())
+  }
+
+  // NEFT CR: "NEFT CR-BANKCODE-MERCHANT NAME-REF" → "Merchant Name"
+  if (/^neft\s*cr/i.test(s)) {
+    const parts = s.split('-')
+    if (parts.length >= 3) return toTitleCase(parts[2].trim())
+  }
+
+  // IMPS: "IMPS-BANKCODE-MERCHANT NAME-REF" → "Merchant Name"
+  if (/^imps/i.test(s)) {
+    const parts = s.split('-')
+    if (parts.length >= 3) return toTitleCase(parts[2].trim())
+  }
+
+  // Fallback: first 30 chars, title-cased
+  return toTitleCase(s.replace(/[^a-zA-Z0-9 ]/g, ' ').trim().slice(0, 30))
+}
+
+function toTitleCase(str: string): string {
+  return str.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())
+}

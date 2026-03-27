@@ -20,12 +20,10 @@ export const merchantMap: Record<string, MerchantRule> = {
   'uber': { clean_name: 'Uber', category: 'Transport', emoji: '🚗' },
   'ola': { clean_name: 'Ola', category: 'Transport', emoji: '🚕' },
   'rapido': { clean_name: 'Rapido', category: 'Transport', emoji: '🛵' },
-  'irctc': { clean_name: 'IRCTC', category: 'Transport', emoji: '🚂' },
   'fastag': { clean_name: 'FASTag', category: 'Transport', emoji: '🛣️' },
   'namma metro': { clean_name: 'Namma Metro', category: 'Transport', emoji: '🚇' },
   'metro': { clean_name: 'Metro', category: 'Transport', emoji: '🚇' },
 
-  // Travel
   'indigo': { clean_name: 'IndiGo', category: 'Travel', emoji: '✈️' },
   'spicejet': { clean_name: 'SpiceJet', category: 'Travel', emoji: '✈️' },
   'airindia': { clean_name: 'Air India', category: 'Travel', emoji: '✈️' },
@@ -33,9 +31,11 @@ export const merchantMap: Record<string, MerchantRule> = {
   'makemytrip': { clean_name: 'MakeMyTrip', category: 'Travel', emoji: '🏨' },
   'goibibo': { clean_name: 'Goibibo', category: 'Travel', emoji: '🏨' },
   'oyo': { clean_name: 'OYO', category: 'Travel', emoji: '🏨' },
+  'irctc': { clean_name: 'IRCTC', category: 'Travel', emoji: '🚂' },
 
   // Shopping
   'amazon': { clean_name: 'Amazon', category: 'Shopping', emoji: '📦' },
+  'amazon pay': { clean_name: 'Amazon Pay', category: 'Shopping', emoji: '💳' },
   'flipkart': { clean_name: 'Flipkart', category: 'Shopping', emoji: '🛍️' },
   'myntra': { clean_name: 'Myntra', category: 'Shopping', emoji: '👗' },
   'nykaa': { clean_name: 'Nykaa', category: 'Shopping', emoji: '💄' },
@@ -53,12 +53,17 @@ export const merchantMap: Record<string, MerchantRule> = {
   'bookmyshow': { clean_name: 'BookMyShow', category: 'Entertainment', emoji: '🎟️' },
   'prime video': { clean_name: 'Prime Video', category: 'Entertainment', emoji: '🎞️' },
   'apple music': { clean_name: 'Apple Music', category: 'Entertainment', emoji: '🎵' },
+  'apple media': { clean_name: 'Apple Services', category: 'Entertainment', emoji: '🍎' },
+  'apple services': { clean_name: 'Apple Services', category: 'Entertainment', emoji: '🍎' },
+  'google india digital': { clean_name: 'Google Play', category: 'Entertainment', emoji: '🎮' },
 
   // Utilities
   'bescom': { clean_name: 'BESCOM', category: 'Utilities', emoji: '⚡' },
   'tatapower': { clean_name: 'Tata Power', category: 'Utilities', emoji: '⚡' },
   'tata power': { clean_name: 'Tata Power', category: 'Utilities', emoji: '⚡' },
+  'tp ach': { clean_name: 'Tata Power', category: 'Utilities', emoji: '⚡' },
   'airtel': { clean_name: 'Airtel', category: 'Utilities', emoji: '📱' },
+  'bharti airtel': { clean_name: 'Airtel', category: 'Utilities', emoji: '📱' },
   'jio': { clean_name: 'Jio', category: 'Utilities', emoji: '📱' },
   'bsnl': { clean_name: 'BSNL', category: 'Utilities', emoji: '📞' },
   'vi ': { clean_name: 'Vi (Vodafone Idea)', category: 'Utilities', emoji: '📱' },
@@ -66,6 +71,7 @@ export const merchantMap: Record<string, MerchantRule> = {
   'mahanagar gas': { clean_name: 'Mahanagar Gas', category: 'Utilities', emoji: '🔥' },
   'indane': { clean_name: 'Indane Gas', category: 'Utilities', emoji: '🔥' },
   'bbmp': { clean_name: 'BBMP', category: 'Utilities', emoji: '🏛️' },
+  'urban company': { clean_name: 'Urban Company', category: 'Utilities', emoji: '🔧' },
 
   // Health
   'apollo': { clean_name: 'Apollo Pharmacy', category: 'Health', emoji: '💊' },
@@ -87,6 +93,15 @@ export const merchantMap: Record<string, MerchantRule> = {
   // Rent
   'nobroker': { clean_name: 'NoBroker', category: 'Rent', emoji: '🏠' },
   'magicbricks': { clean_name: 'MagicBricks', category: 'Rent', emoji: '🏢' },
+  'furlenco': { clean_name: 'Furlenco', category: 'Rent', emoji: '🛋️' },
+  
+  // Transfer / Other
+  'cred club': { clean_name: 'CRED', category: 'Transfer', emoji: '💳' },
+  'capgemini': { clean_name: 'Capgemini (Salary)', category: 'Transfer', emoji: '💼' },
+  'razorpay': { clean_name: 'Razorpay', category: 'Other', emoji: '💸' },
+  'payu': { clean_name: 'PayU', category: 'Other', emoji: '💸' },
+  'cashfree': { clean_name: 'Cashfree', category: 'Other', emoji: '💸' },
+  'poonawalla': { clean_name: 'Poonawalla Fincorp', category: 'Other', emoji: '🏦' },
 }
 
 export function lookupMerchant(rawMerchant: string): MerchantRule | null {
