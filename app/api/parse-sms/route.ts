@@ -66,6 +66,21 @@ export async function POST(req: NextRequest) {
       confidence = 'low'
     }
 
+    // Dedup: skip if identical transaction already exists for this user
+    const { data: existing } = await supabase
+      .from('transactions')
+      .select('id')
+      .eq('user_id', user_id)
+      .eq('amount', amount)
+      .eq('type', type)
+      .eq('date', date)
+      .eq('raw_merchant', narration)
+      .limit(1)
+
+    if (existing && existing.length > 0) {
+      return NextResponse.json({ success: true, duplicate: true })
+    }
+
     const { error } = await supabase.from('transactions').insert({
       user_id,
       date,
